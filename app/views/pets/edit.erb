@@ -5,11 +5,17 @@
 <label>Name:</label>
 <br><br>
 
-<% Owner.all.each do |owner| %>
+<input type="text" name="pet[name]" id="pet_name" value="<%=@pet.name%>">
 
-<input type="radio" name="pet[owner_id"]  value="<%=owner.id%> id="<%=owner.id%>" 
-  <%="checked" if @pet.owner == owner %>><%=owner.name%>
-</input>
+<br></br>
+
+<label>Choose an existing owner:</label>
+<br></br>
+
+<% Owner.all.each do |owner| %>
+  <input type="radio" name="pet[owner_id]"  value="<%=owner.id%>" id="<%=owner.id%>" 
+   <%="checked" if @pet.owner == owner %>><%=owner.name%>
+  </input>
 <% end %>
 
 <br><br>
