@@ -2,9 +2,9 @@
 
 <!-- Pet(id: integer, name: string, owner_id: integer) -->
 
-<form method="post" action="/pets/">
+<form method="post" action="/pets">
   <input name="pet[:name]" id="pet_name" />
-</form>
+
 
 <h3>Existing Owners</h3>
 <% @owners.each do |owner| %>
@@ -15,7 +15,8 @@
 <h3>New Owner</h3>
 <label>Owner Name: </label>
 <br>
-<input type="text" name="owner[name]" id="owner_name"></input>
+<input type="text" name="owner[:name]" id="owner_name"></input>
 <br><br>
 
 <input type="submit" name="submit" value="Create Pet" />
+</form>
