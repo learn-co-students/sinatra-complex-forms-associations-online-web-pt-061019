@@ -19,19 +19,18 @@ class PetsController < ApplicationController
     redirect to "pets/#{@pet.id}"
   end
 
+  get '/pets/:id' do
+    @pet = Pet.find(params[:id])
+    erb :'/pets/show'
+  end
+
   get '/pets/:id/edit' do
     @owners = Owner.all
     @pet = Pet.find(params[:id])
     erb :'/pets/edit'
   end
 
-  get '/pets/:id' do
-    @pet = Pet.find(params[:id])
-    erb :'/pets/show'
-  end
-
   patch '/pets/:id' do
-    binding.pry
     if !params[:pet].keys.include?("owner_id")
       params[:pet]["owner_id"] = nil
     end
