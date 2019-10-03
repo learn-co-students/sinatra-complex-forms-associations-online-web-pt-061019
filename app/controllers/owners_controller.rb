@@ -36,10 +36,16 @@ class OwnersController < ApplicationController
   end
 
   patch '/owners/:id' do
-    # binding.pry
+
     @owner = Owner.all.find_by_id(params[:id])
-    # @owner[name] = params[:name]
-    @owner[:name] = params[:owner][:name]
+    @owner.update(params[:owner]) # This updates the whole owner object, as opposed to one property at a time with @owner[:name]
     @owner.save
+
+    if !params["pet"]["name"].empty?
+      @owner.pets << Pet.create(name: params["pet"]["name"])
+    end
+
+    redirect "/owners/#{@owner.id}"
   end
+  
 end
